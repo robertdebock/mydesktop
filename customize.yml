@@ -1,0 +1,82 @@
+---
+- hosts: localhost
+  name: include roles
+  gather_facts: false
+  roles:
+    - docker
+    - andrewrothstein.terraform
+
+
+- hosts: localhost
+  gather_facts: false
+  become: true
+  name: customize workstation
+  tasks:
+    - name: install software
+      dnf:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - ansible
+        - arm-none-eabi-binutils-cs
+        - arm-none-eabi-gcc-cs
+        - arm-none-eabi-newlib
+        - avr-gcc
+        - avr-libc
+        - binutils-avr32-linux-gnu
+        - dfu-programmer
+        - dfu-util
+        - ftp://195.220.108.108/linux/rpmfusion/free/fedora/releases/26/Everything/x86_64/os/Packages/f/fuse-exfat-1.2.7-1.fc26.x86_64.rpm
+        - hexchat
+        - jq
+        - libselinux-python
+        - python-dopy
+        - screen
+        - "@virtualization"
+        - vagrant
+      tags:
+        - software
+
+    - name: enable and start software
+      systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: true
+      with_items:
+        - libvirtd
+      tags:
+        - services
+
+    - name: allow users docker access
+      user:
+        name: "{{ item }}"
+        groups: docker
+        append: yes
+      with_items:
+        - robertdb
+      tags:
+        - users
+
+    - name: setup passwordless sudo
+      template:
+        src: templates/sudoer.j2
+        dest: /etc/sudoers.d/{{ item }}
+        validate: 'visudo -cf %s'
+      tags:
+        - users
+      with_items:
+        - robertdb
+
+    - name: add battery alias
+      lineinfile:
+        path: /home/robertdb/.bashrc
+        line: "alias battery=\"upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E 'state|to\ full|percentage|capacity'\""
+        regexp: "alias battery="
+      tags: userconfiguration
+
+    - name: place rc.local
+      copy:
+        dest: /etc/rc.d/rc.local
+        content: |
+          #!/bin/sh
+          /usr/sbin/powertop --auto-tune

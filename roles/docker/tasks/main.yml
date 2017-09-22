@@ -1,0 +1,19 @@
+---
+# tasks file for docker
+- name: install software
+  become: true
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - docker
+    - docker-compose
+
+- name: enable and start software
+  become: true
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  with_items:
+    - docker

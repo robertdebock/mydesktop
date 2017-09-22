@@ -1,0 +1,42 @@
+---
+terraform_ver : '0.10.4'
+terraform_platform : linux_amd64
+terraform_mirror : https://releases.hashicorp.com/terraform
+
+terraform_install_dir : /usr/local/bin
+terraform_providers_dir: /usr/local/terraform-providers
+
+# https://releases.hashicorp.com/terraform/0.10.4/terraform_0.10.4_SHA256SUMS
+terraform_checksums:
+  darwin_amd64: sha256:70885c572f7bc54361c77d4839303210579db5875636711f621f6763574c1237
+  freebsd_386: sha256:49679e1adc9940de0be33df93c5f33fe02f52ded411f12f28d487bfe6138b992
+  freebsd_amd64: sha256:fdaf5b70c08e12a3b461428f6f77152d07416db38994118dc24a83a1ff053e3c
+  freebsd_arm: sha256:80362bcd51d0eab55301276e57ca99907470634c3be81b1d8ee4fd37a6eb5c55
+  linux_386: sha256:fab709d53c01c2a5df497ad4274d2322d314d6dfae9f5d47c607c9a6b49f785b
+  linux_amd64: sha256:cff83f669d0e4ac315e792a57659d5aae8ea1fcfdca6931c7cc4679b4e6c60e3
+  linux_arm: sha256:73f2ba6a07ff837d0826831d25b310cd0a36f15ac63e48115024f7a00476766a
+  openbsd_386: sha256:755e1344d0e2f249a569d2541eb3af21dbc421f0d3b065dfa530cb32ff810ff8
+  openbsd_amd64: sha256:30eb745b90434ab1279dc950b6c186723715b47f1d96a05e233325534db67c79
+  solaris_amd64: sha256:90bbfc8f945793ea29d06b7a13346e0350f30e648f3d80edda02cafde10a1e1e
+  windows_386: sha256:ad440091b09f27029e49e46c312be4ef1e102c75ce4c34f0062fef136fe0c4fd
+  windows_amd64: sha256:27e40fa8d944b8e1c68b1968a8890625a3ef18e4e752782eaa4dc6e99c6ded3a
+
+# https://releases.hashicorp.com/terraform-provider-aws/0.1.4/terraform-provider-aws_0.1.4_SHA256SUMS
+#terraform_providers:
+#  - provider: aws
+#    version: '0.1.4'
+#    checksums:
+#      darwin_amd64: sha256:4cd53a85aa2a109c7b1e14d32466e23f4ecf65387a645abae7c8da07eb346341
+#      freebsd_386: sha256:26b59f0fe278056b18203ad5f041473c22394687b3b455c20e86fe3d6d12247a
+#      freebsd_amd64: sha256:e8e2e8e08d88ce153ed1c23d7d7671d72f0722fefab332f95557f888ec8bb780
+#      freebsd_arm: sha256:d2e6f0d4d818c054ec6e3b1ae7bfa6135162319bdaddfa667eacb0afe1c93023
+#      linux_386: sha256:8679172dc4055979988fb7a8af4510bc249388c9e3451b544089aebda2b2505a
+#      linux_amd64: sha256:530c25b88b2cf4c4c4e0b63b91fadd604e89ce58e6e780ea5f011cca029c5611
+#      linux_arm: sha256:53ef7dffc08c4fd69127d245cdddd8b4418e03fe1c0269a827b06b62682ef432
+#      openbsd_386: sha256:c6e4dea2ca037084821bbe38ef06d98e04af0cda263a6026b1dc760f94239df7
+#      openbsd_amd64: sha256:d878aa0bdcc64bf64d320ce2b405687b73c7c8d76a5c8d076ac44eea516e6f28
+#      solaris_amd64: sha256:59db8c9d3ef9256220931e59aec49f32d2648200c45d2bd47e46e3c6b26b9cdf
+#      windows_386: sha256:b7e7c17f49bd68013eb92b68e11f6cbc97aee62c6ef4eb9a4f9c7e53fb6210cf
+#      windows_amd64: sha256:0987a4354fca141a53f7c1ab4c4fbc736d2a55c2d951654ed46ad72aaf3cf643
+  
+terraform_cleanup: True
